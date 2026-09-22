@@ -227,7 +227,7 @@ Ao retornar, o pedido continua no estado "em montagem": o painel "Seu Pedido" ap
 | Gabriel Lessa Tramasol Machado | Fazer pedido | R01: pedido registrado com quantidade ou valor divergente do confirmado | Tabela de decisão | CT01 e CT02 |
 | Gabriel Lessa Tramasol Machado | Fazer pedido | R02: pedido em montagem descartado sem aviso ao navegar | Transição de estados | CT03 |
 
-**Leitura da matriz:** a funcionalidade "fazer pedido" foi analisada integralmente; foram identificados dois riscos, ambos de prioridade alta; foram aplicadas duas técnicas distintas, cada uma escolhida pela natureza do risco; os três casos de teste estão vinculados a um risco e a uma técnica, e nenhum dos dois riscos ficou sem caso de teste correspondente. As combinações documentadas mas não cobertas nesta rodada (regras 3 e 4 da tabela de decisão e transições T6 e T7) estão registradas como próximos casos, para que a lacuna fique explícita em vez de invisível.
+**Leitura da matriz:** a funcionalidade "fazer pedido" foi analisada integralmente; foram identificados dois riscos, ambos de prioridade alta; foram aplicadas duas técnicas distintas, cada uma escolhida pela natureza do risco; os três casos de teste estão vinculados a um risco e a uma técnica, e nenhum dos dois riscos ficou sem caso de teste correspondente. Na tabela de decisão, a regra 3 é inalcançável pela interface e a regra 4 foi observada e atendida, conforme a seção 3.2. As transições T6 e T7 ficam registradas como próximos casos, para que a lacuna fique explícita em vez de invisível.
 
 ---
 
