@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.6, pytest-9.1.1, pluggy-1.7.0 -- /Users/gabriel/Documents/ChatGPT/Projeto Desenvolvimento/atividade-tdd/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/gabriel/Documents/ChatGPT/Projeto Desenvolvimento/atividade-tdd/praticas/aula-11-testes-unitarios-tdd
+collecting ... collected 7 items
+
+tests/test_pedido.py::test_calcula_total_de_varios_itens PASSED          [ 14%]
+tests/test_pedido.py::test_retorna_zero_quando_lista_esta_vazia PASSED   [ 28%]
+tests/test_pedido.py::test_rejeita_item_com_preco_zero PASSED            [ 42%]
+tests/test_pedido.py::test_rejeita_item_com_quantidade_zero PASSED       [ 57%]
+tests/test_taxa_entrega.py::test_cobra_cinco_reais_para_dois_km_e_pedido_de_cinquenta_reais PASSED [ 71%]
+tests/test_taxa_entrega.py::test_cobra_sete_reais_para_quatro_km_e_pedido_de_cinquenta_reais PASSED [ 85%]
+tests/test_taxa_entrega.py::test_entrega_gratuita_para_cinco_km_e_pedido_de_cem_reais FAILED [100%]
+
+=================================== FAILURES ===================================
+__________ test_entrega_gratuita_para_cinco_km_e_pedido_de_cem_reais ___________
+
+    def test_entrega_gratuita_para_cinco_km_e_pedido_de_cem_reais():
+>       assert calcular_taxa_entrega(5, 100) == 0
+E       assert 9 == 0
+E        +  where 9 = calcular_taxa_entrega(5, 100)
+
+tests/test_taxa_entrega.py:13: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_taxa_entrega.py::test_entrega_gratuita_para_cinco_km_e_pedido_de_cem_reais
+========================= 1 failed, 6 passed in 0.02s ==========================
