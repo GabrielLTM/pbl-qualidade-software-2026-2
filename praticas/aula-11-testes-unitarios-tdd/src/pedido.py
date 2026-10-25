@@ -1,12 +1,4 @@
-"""Regras de negocio relacionadas ao calculo de pedidos."""
-
-
 def validar_item(item: dict) -> None:
-    """Valida preco e quantidade de um item.
-
-    Raises:
-        ValueError: se o preco ou a quantidade nao forem positivos.
-    """
     if item["preco"] <= 0:
         raise ValueError("O preco deve ser positivo.")
 
@@ -15,10 +7,6 @@ def validar_item(item: dict) -> None:
 
 
 def calcular_total(itens: list[dict]) -> float:
-    """Calcula o total do pedido.
-
-    Uma lista vazia resulta em total igual a zero.
-    """
     total = 0
 
     for item in itens:
@@ -29,10 +17,6 @@ def calcular_total(itens: list[dict]) -> float:
 
 
 def calcular_taxa_entrega(distancia_km: float, total_pedido: float) -> float:
-    """Cobra R$ 5 ate 3 km e R$ 2 por km excedente.
-
-    Pedidos a partir de R$ 100 possuem entrega gratuita.
-    """
     if total_pedido >= 100:
         return 0
 
