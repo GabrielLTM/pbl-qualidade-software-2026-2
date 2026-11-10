@@ -11,26 +11,26 @@
 
 ## 2. Responsabilidades
 
-| ID | Integrante responsável | Tipo | Comportamento verificado | Arquivo e função de teste |
+| Tipo de teste | Identificador | Integrante responsável | Comportamento verificado | Arquivo e função de teste |
 | --- | --- | --- | --- | --- |
-| TU01 | Gabriel Lessa Tramasol Machado | Unitário | R$ 30,00 atinge o mínimo | `test_regras_localeats.py::test_pedido_de_trinta_reais_atinge_o_minimo` |
-| TU02 | Gabriel Lessa Tramasol Machado | Unitário | Um valor negativo gera `ValueError` | `test_regras_localeats.py::test_pedido_com_valor_negativo_gera_erro` |
-| TU03 | Gabriel Lessa Tramasol Machado | Unitário | R$ 29,99 fica abaixo do mínimo | `test_regras_localeats.py::test_pedido_de_um_centavo_abaixo_do_minimo_nao_atinge_o_minimo` |
-| TF01 | Gabriel Lessa Tramasol Machado | Funcional | A tela alterna entre os formulários de entrada e cadastro | `test_localeats.py::test_alterna_entre_formularios_de_entrada_e_cadastro` |
+| Primeiro teste unitário | TU01 | Gabriel Lessa Tramasol Machado | R$ 30,00 atinge o mínimo | `test_regras_localeats.py::test_pedido_de_trinta_reais_atinge_o_minimo` |
+| Segundo teste unitário | TU02 | Gabriel Lessa Tramasol Machado | Um valor negativo gera `ValueError` | `test_regras_localeats.py::test_pedido_com_valor_negativo_gera_erro` |
+| Terceiro teste unitário | TU03 | Gabriel Lessa Tramasol Machado | R$ 29,99 fica abaixo do mínimo | `test_regras_localeats.py::test_pedido_de_um_centavo_abaixo_do_minimo_nao_atinge_o_minimo` |
+| Teste funcional de entrada e cadastro | TF01 | Gabriel Lessa Tramasol Machado | A tela alterna entre os formulários de entrada e cadastro | `test_localeats.py::test_alterna_entre_formularios_de_entrada_e_cadastro` |
 
 ## 3. Regra e testes unitários
 
 A função `pedido_atingiu_valor_minimo`, em [regras_localeats.py](regras_localeats.py), retorna `True` para R$ 30,00 ou mais, retorna `False` para valores não negativos abaixo do mínimo e lança `ValueError` para valores negativos. Os [testes unitários](test_regras_localeats.py) cobrem o valor exato do mínimo, um centavo abaixo e um centavo negativo.
 
-## 4. Registro do TDD
+## 4. Registro do desenvolvimento orientado a testes
 
-1. **Primeiro teste (TU01).** A chamada com R$ 30,00 deveria retornar `True`. A primeira execução falhou com `NotImplementedError` porque a função ainda estava vazia. A comparação `valor_pedido >= 30` fez o teste passar.
-2. **Segundo teste (TU02).** A chamada com −R$ 0,01 deveria lançar `ValueError`. O teste falhou porque a comparação retornava `False`. A validação de valores negativos passou a acontecer antes da comparação, e os dois testes passaram.
-3. **Caso de borda (TU03).** O teste com R$ 29,99 passou com a mesma implementação. A função ficou com uma validação de entrada e uma comparação, sem necessidade de refatoração.
+1. **Primeiro teste com o pedido no valor mínimo.** A chamada com R$ 30,00 deveria retornar `True`. A primeira execução falhou com `NotImplementedError` porque a função ainda estava vazia. A comparação `valor_pedido >= 30` fez o teste passar.
+2. **Segundo teste com valor negativo.** A chamada com −R$ 0,01 deveria lançar `ValueError`. O teste falhou porque a comparação retornava `False`. A validação de valores negativos passou a acontecer antes da comparação, e os dois testes passaram.
+3. **Terceiro teste com um centavo abaixo do mínimo.** O teste com R$ 29,99 passou com a mesma implementação. A função ficou com uma validação de entrada e uma comparação, sem necessidade de refatoração.
 
 ## 5. Teste funcional com Playwright
 
-O [TF01](test_localeats.py) abre o [LocalEats](https://local-eats-unisenac.vercel.app/) em uma sessão de navegador limpa e confirma que o formulário de entrada está visível. Ao clicar em **Criar Conta**, verifica que o botão **Registrar** aparece e o formulário de entrada fica oculto. Ao clicar em **Entrar**, verifica que o botão de envio do formulário de entrada aparece e que o cadastro fica oculto.
+O [teste funcional de entrada e cadastro](test_localeats.py) abre o [LocalEats](https://local-eats-unisenac.vercel.app/) em uma sessão de navegador limpa e confirma que o formulário de entrada está visível. Ao clicar em **Criar Conta**, verifica que o botão **Registrar** aparece e o formulário de entrada fica oculto. Ao clicar em **Entrar**, verifica que o botão de envio do formulário de entrada aparece e que o cadastro fica oculto.
 
 O teste usa locators para delimitar cada formulário e assertions com espera automática do Playwright. As interações se limitam à alternância dos formulários. Resultado no Chromium: **aprovado**.
 
@@ -63,18 +63,18 @@ python -m pytest -v | tee relatorio-pytest.txt
 
 ## 7. Explicação individual
 
-O TF01 verifica se a tela mostra apenas o formulário correspondente à ação escolhida. O contexto do navegador começa sem sessão autenticada. Após clicar em **Criar Conta**, o botão **Registrar** deve aparecer dentro do cadastro e a entrada deve ficar oculta. O clique em **Entrar** deve inverter esse estado. Se o botão apontar para a ação errada ou se os dois formulários ficarem visíveis ao mesmo tempo, uma das assertions falha.
+O teste de alternância entre os formulários verifica se a tela mostra apenas o formulário correspondente à ação escolhida. O contexto do navegador começa sem sessão autenticada. Após clicar em **Criar Conta**, o botão **Registrar** deve aparecer dentro do cadastro e a entrada deve ficar oculta. O clique em **Entrar** deve inverter esse estado. Se o botão apontar para a ação errada ou se os dois formulários ficarem visíveis ao mesmo tempo, o teste falha.
 
 ## 8. Uso de inteligência artificial
 
 - **Ferramenta:** Codex.
 - **Uso:** apoio à escolha do fluxo, implementação da regra e dos testes, execução e organização do Markdown.
 - **Sugestão alterada:** a proposta inicial de automatizar a busca de restaurantes pela página inicial foi substituída pela alternância dos formulários. Sem sessão autenticada, o endereço abre a tela de entrada.
-- **Verificação:** a interface foi inspecionada no navegador. As falhas esperadas durante o TDD foram reproduzidas, e o pytest executou os quatro testes, incluindo o fluxo no Chromium contra o site publicado.
+- **Verificação:** a interface foi inspecionada no navegador. As falhas esperadas durante o desenvolvimento orientado a testes foram reproduzidas, e o pytest executou os quatro testes, incluindo o fluxo no Chromium contra o site publicado.
 
 ## 9. Diferenciais implementados
 
-- Terceiro teste unitário para o valor imediatamente abaixo do mínimo (TU03).
-- Uso de `pytest.raises` para verificar a exceção de valor negativo (TU02).
+- Terceiro teste unitário para o valor imediatamente abaixo do mínimo.
+- Uso de `pytest.raises` no segundo teste unitário para verificar a exceção de valor negativo.
 
 [Ver os testes unitários](test_regras_localeats.py).
