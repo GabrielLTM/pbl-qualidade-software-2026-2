@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-8.4.2, pluggy-1.7.0
+cachedir: .pytest_cache
+rootdir: .
+plugins: playwright-0.10.0
+collecting ... collected 4 items
+
+test_localeats.py::test_alterna_entre_formularios_de_entrada_e_cadastro[chromium] PASSED [ 25%]
+test_regras_localeats.py::test_pedido_de_trinta_reais_atinge_o_minimo PASSED [ 50%]
+test_regras_localeats.py::test_pedido_com_valor_negativo_gera_erro PASSED [ 75%]
+test_regras_localeats.py::test_pedido_de_um_centavo_abaixo_do_minimo_nao_atinge_o_minimo PASSED [100%]
+
+============================== 4 passed in 2.27s ===============================
